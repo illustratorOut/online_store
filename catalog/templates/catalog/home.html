@@ -21,15 +21,41 @@
         продать</p>
 </div>
 
-<div class="container">
-    <div class="row text-center">
-        <div class="col-3">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
+
+<!--<div class="container  ">-->
+<!--    <div class="row text-center  ">-->
+<!--        <div class="col-3 ">-->
+<!--            <div class="card mb-4 box-shadow "> &lt;!&ndash;  mb-4 = отступы box-shadow = тени &ndash;&gt;-->
+<!--                <div class="card-header">-->
+<!--                    <h4 class="my-0 font-weight-normal">hfghgf}</h4>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <h1 class="card-title pricing-card-title">546 ₱</h1>-->
+<!--                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">-->
+<!--                        <li>- Неограниченная лицензия</li>-->
+<!--                        <li>- Поддержка</li>-->
+<!--                        <li>- Установка на сервер</li>-->
+<!--                        <li>- Получение обновлений</li>-->
+<!--                    </ul>-->
+<!--                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="container py-3">
+    <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+
+        {% for item in news%}
+        <div class="col">
+            <div class="card mb-4 box-shadow rounded-3">
+
+                <div class="card-header py-3 ">
+                    <h4 class="my-0 font-weight-normal">{{item.name}}</h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$ 140</h1>
+                    <h1 class="card-title pricing-card-title">{{item.price}} ₱</h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li>- Неограниченная лицензия</li>
                         <li>- Поддержка</li>
@@ -39,39 +65,44 @@
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                 </div>
             </div>
+
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+        <div class="col-12 col-md">
+            SkyStore
+            <small class="d-block mb-3 text-muted">&copy; 2023</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Категории</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">Рассылки</a></li>
+                <li><a class="text-muted" href="#">Телеграм боты</a></li>
+                <li><a class="text-muted" href="#">Полезные утилиты</a></li>
+                <li><a class="text-muted" href="#">Веб-приложения</a></li>
+                <li><a class="text-muted" href="#">Микросервисы</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Дополнительно</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">Мы пишем</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>О нас</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/contacts">Контакты</a></li>
+            </ul>
         </div>
     </div>
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md">
-                SkyStore
-                <small class="d-block mb-3 text-muted">&copy; 2023</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Категории</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Дополнительно</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Мы пишем</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>О нас</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="/contacts">Контакты</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+</footer>
 </div>
 
 <script src="/static/js/bootstrap.bundle.min.js"></script>

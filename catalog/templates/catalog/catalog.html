@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,18 +25,23 @@
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
                     <table class="table table-striped">
+                        {% for item in info_contacts%}
+
                         <tr>
                             <td class="w-25">Страна</td>
-                            <td>USA</td>
+                            <td>{{item.country}}</td>
                         </tr>
+                        {%if item.inn %}
                         <tr>
                             <td class="w-25">ИНН</td>
-                            <td>91-1144442</td>
+                            <td>{{item.inn}}</td>
                         </tr>
+                        {%endif%}
                         <tr>
                             <td class="w-25">Адрес</td>
-                            <td>Redmond,WA,98052-6399</td>
+                            <td>{{item.address}}, Тел. <b>{{item.phone}}</b></td>
                         </tr>
+                        {% endfor %}
                     </table>
                 </div>
             </div>
