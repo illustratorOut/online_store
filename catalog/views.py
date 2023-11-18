@@ -5,7 +5,11 @@ from catalog.models import Product, Contacts
 
 def home(request):
     news = Product.objects.all().order_by('-id')[:5]
-    return render(request, 'catalog/home.html', {'news': news})
+    context = {
+        'title': 'Главная',
+        'news': news,
+    }
+    return render(request, 'catalog/home.html', context)
 
 
 def catalog(request):
@@ -16,4 +20,18 @@ def catalog(request):
         message = request.POST.get('message')
         print(f'name: {name}\nphone: {phone}\nmessage: {message}')
 
-    return render(request, 'catalog/catalog.html', {'info_contacts': info_contacts})
+    context = {
+        'title': 'Контакты',
+        'info_contacts': info_contacts,
+    }
+    return render(request, 'catalog/catalog.html', context)
+
+
+def product(request, pk):
+    print(request)
+    info_product = Product.objects.filter(pk=pk)
+    context = {
+        'info_product': info_product,
+    }
+
+    return render(request, 'catalog/product.html', context)

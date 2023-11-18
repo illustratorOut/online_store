@@ -1,0 +1,65 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Овощи",
+      "description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Фрукт",
+      "description": "Сладкий"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Ягоды",
+      "description": "Сладкие"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Яблоко",
+      "description": "Зеленое",
+      "photo": "",
+      "category": 2,
+      "price": 0,
+      "date_create": "2023-11-11T09:23:16.575Z",
+      "last_modified_date": "2023-11-11T09:23:16.575Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Картошка",
+      "description": "Большая",
+      "photo": "",
+      "category": 1,
+      "price": 50,
+      "date_create": "2023-11-11T09:23:51.199Z",
+      "last_modified_date": "2023-11-11T09:23:51.199Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Апельстн",
+      "description": "оранжевый",
+      "photo": "",
+      "category": 2,
+      "price": 100,
+      "date_create": "2023-11-11T09:28:05.621Z",
+      "last_modified_date": "2023-11-11T09:28:05.621Z"
+    }
+  }
+]
