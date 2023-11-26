@@ -13,16 +13,19 @@
         {% for i in object_list%}
 
         <div class="card-deck">
-            <div class="card" >
+            <div class="card">
 
-                <img class="card-img-top" src="/media/{{ i.preview }}" alt="Card image cap" style=" width: 100%; height: 10vw; object-fit: cover;">
+                <img class="card-img-top" src="/media/{{ i.preview }}" alt="Card image cap"
+                     style=" width: 100%; height: 10vw; object-fit: cover;">
                 <hr align="center" size="2" color="#ff0000"/>
 
                 <div class="card-body">
                     <h5 class="card-title">{{ i.title }}</h5>
-                    <p class="card-text">{{ i.body }}</p>
-                    <a href="product-{{item.pk}}" class="btn btn-outline-secondary">Изменить</a>
-                    <a href="product-{{item.pk}}" class="btn btn-outline-danger">Удалить</a>
+                    <p class="card-text">{{ i.body|slice:80 }}</p>
+
+                    <a href="{% url 'blog:view' i.pk %}" class="btn btn-outline-primary btn-sm">Просмотр</a>
+                    <a href="{% url 'blog:update' i.pk %}" class="btn btn-outline-secondary btn-sm">Изменить</a>
+                    <a href="{% url 'blog:delete' i.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
 
                 </div>
                 <div class="card-footer">
