@@ -4,36 +4,35 @@
 {% block content%}
 
 <div class="container-sm py-3">
-    {% for i in info_product %}
+
 
     <div class="card text-center">
         <div class="card-header">
-            {{i.category}}
+            {{object.category}}
         </div>
         <div class="container py-3">
             <div class="row  align-items-center">
                 <div class="col">
                     <h5 class="card-title">{{i.name}}</h5>
                     <div class="card mb-1 rounded mx-auto d-block" style="max-width: 300px;">
-                        <img src="{{ i.photo|mediapath }}" class="img-fluid"/>
+                        <img src="{{ object.photo|mediapath }}" class="img-fluid"/>
                     </div>
-                    <h5 class="card-title">Цена: {{i.price}} ₱</h5>
+                    <h5 class="card-title">Цена: {{object.price}} ₱</h5>
                 </div>
                 <div class="col">
                     <h5 class="card-title">Описание</h5>
-                    <p class="card-text">{{i.description}}</p>
+                    <p class="card-text">{{object.description}}</p>
                     <a href="#" class="btn btn-primary"> Изменить</a>
                 </div>
             </div>
         </div>
         <div class="card-footer text-muted">
-            {{ item.last_modified_date }}
-            <p class="card-text"><small class="text-muted">{{ i.last_modified_date }}</small></p>
+            <p class="card-text"><small class="text-muted">{{ object.last_modified_date }}</small></p>
         </div>
     </div>
 
 
-    {% endfor %}
+
 </div>
 
 {% endblock %}

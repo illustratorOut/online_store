@@ -1,6 +1,19 @@
 from django.shortcuts import render
 
 from catalog.models import Product, Contacts
+from django.views.generic import ListView, DetailView
+
+
+class ProductListView(ListView):
+    model = Product
+
+
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class ContactsListView(ListView):
+    model = Contacts
 
 
 def home(request):

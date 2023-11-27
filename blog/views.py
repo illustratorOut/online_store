@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 
 class BlogCreateView(CreateView):
     model = Blog
-    fields = ('title', 'slug', 'body', 'preview')
+    fields = ('title', 'body', 'preview')
     success_url = reverse_lazy('blog:home')
 
     def form_valid(self, form):
@@ -34,7 +34,7 @@ class BlogListView(ListView):
 
 class BlogUpdateView(UpdateView):
     model = Blog
-    fields = ('title', 'slug', 'body', 'preview', 'is_published')
+    fields = ('title', 'body', 'preview', 'is_published')
     success_url = reverse_lazy('blog:home')
 
     def get_success_url(self):
