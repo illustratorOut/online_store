@@ -1,0 +1,41 @@
+{% extends 'catalog/base.html' %}
+
+
+{% block content%}
+
+<div class="container py-3">
+
+    <div class="mb-5">
+        <a class="btn btn-primary" href="{% url 'blog:create' %}">Создать статью</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+        {% for i in object_list%}
+
+        <div class="card-deck">
+            <div class="card">
+
+                <img class="card-img-top" src="/media/{{ i.preview }}" alt="Card image cap"
+                     style=" width: 100%; height: 10vw; object-fit: cover;">
+                <hr align="center" size="2" color="#ff0000"/>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.title }}</h5>
+                    <p class="card-text">{{ i.body|slice:80 }}</p>
+
+                    <a href="{% url 'blog:view' i.pk %}" class="btn btn-outline-primary btn-sm">Просмотр</a>
+                    <a href="{% url 'blog:update' i.pk %}" class="btn btn-outline-secondary btn-sm">Изменить</a>
+                    <a href="{% url 'blog:delete' i.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ i.date_create }}</small>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

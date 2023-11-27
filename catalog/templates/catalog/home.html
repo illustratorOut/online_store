@@ -8,8 +8,6 @@
     <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
 
         {% for item in news%}
-        <form action="product-{{item.pk}}" method="get">
-            {% csrf_token %}
             <div class="col ">
                 <div class="card mb-4 box-shadow rounded-3">
 
@@ -27,11 +25,10 @@
                             <li>- Установка на сервер</li>
                             <li>- {{ item.last_modified_date }}</li>
                         </ul>
-                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                        <a href="product-{{item.pk}}" class="btn btn-lg btn-block btn-outline-primary">Купить</a>
                     </div>
                 </div>
             </div>
-        </form>
         {% endfor %}
     </div>
 </div>
