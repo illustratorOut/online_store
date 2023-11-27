@@ -1,0 +1,37 @@
+{% extends 'catalog/base.html' %}}
+{% load my_tags%}
+
+{% block content%}
+
+<div class="container-sm py-3">
+
+
+    <div class="card text-center">
+        <div class="card-header">
+            {{object.category}}
+        </div>
+        <div class="container py-3">
+            <div class="row  align-items-center">
+                <div class="col">
+                    <h5 class="card-title">{{object.name}}</h5>
+                    <div class="card mb-1 rounded mx-auto d-block" style="max-width: 300px;">
+                        <img src="{{ object.photo|mediapath }}" class="img-fluid"/>
+                    </div>
+                    <h5 class="card-title">Цена: {{object.price}} ₱</h5>
+                </div>
+                <div class="col">
+                    <h5 class="card-title">Описание</h5>
+                    <p class="card-text">{{object.description}}</p>
+                    <a href="#" class="btn btn-primary"> Изменить</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <p class="card-text"><small class="text-muted">{{ object.last_modified_date }}</small></p>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

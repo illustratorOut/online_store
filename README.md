@@ -1,5 +1,5 @@
 <h1>Заполнить шаблон данными:</h1>
-
+-
 
 ```python
 python manage.py add_data

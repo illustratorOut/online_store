@@ -8,9 +8,9 @@ class Truncate:
     @classmethod
     def truncate(cls):
         with connection.cursor() as cursor:
-            name_table = f'{cls.__module__.split(".")[0]}_{cls.__name__.lower()}'
+            name_table = f'{cls.__module__.split('.')[0]}_{cls.__name__.lower()}'
             cursor.execute(f'TRUNCATE TABLE "{name_table}" RESTART IDENTITY CASCADE')
-            print(colorama.Fore.GREEN + f'Таблица "{name_table}" очищена!' \
+            print(colorama.Fore.GREEN + f"Таблица '{name_table}' очищена!" \
                   + colorama.Fore.RESET)
 
 

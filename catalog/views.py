@@ -28,6 +28,7 @@ def catalog(request):
 
 
 def product(request, pk):
+    print(request)
     info_product = Product.objects.filter(pk=pk)
     context = {
         'info_product': info_product,
