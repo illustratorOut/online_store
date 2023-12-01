@@ -1,37 +1,16 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from catalog.models import Product, Contacts
 
 
-def home(request):
-    news = Product.objects.all().order_by('-id')[:5]
-    context = {
-        'title': 'Главная',
-        'news': news,
-    }
-    return render(request, 'catalog/home.html', context)
+class ProductListView(ListView):
+    model = Product
 
 
-def catalog(request):
-    info_contacts = Contacts.objects.all()
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        message = request.POST.get('message')
-        print(f'name: {name}\nphone: {phone}\nmessage: {message}')
-
-    context = {
-        'title': 'Контакты',
-        'info_contacts': info_contacts,
-    }
-    return render(request, 'catalog/catalog.html', context)
+class ProductDetailView(DetailView):
+    model = Product
 
 
-def product(request, pk):
-    print(request)
-    info_product = Product.objects.filter(pk=pk)
-    context = {
-        'info_product': info_product,
-    }
-
-    return render(request, 'catalog/product.html', context)
+class ContactsListView(ListView):
+    model = Contacts
