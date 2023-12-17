@@ -19,6 +19,8 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
+        self.object = form.save()
+        self.object.save()
         while True:
             random_key_registration = ''.join([str(random.randint(0, 9)) for _ in range(12)])
             if form.is_valid():
