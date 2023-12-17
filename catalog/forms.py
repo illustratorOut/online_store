@@ -16,7 +16,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('owner',)
 
     def clean_name(self):
         clean_data = self.cleaned_data['name']
@@ -36,6 +36,22 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 class VersionForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Version
-        fields = '__all__'
+        exclude = ('owner',)
 
-    # здесь реализовать  def clean_name(self): ??
+    def clean(self):
+        cleaned_data = super().clean()
+        flag_current_version = cleaned_data.get('flag_current_version')
+        product = cleaned_data.get('product')
+        print(product)
+
+        if flag_current_version:
+            existing_active_versions = Version.objects.filter(
+                product=product,
+                flag_current_version=True
+            ).exclude(pk=self.instance.pk)  # Исключает по ID
+
+            # Возвращает True, если возвращаемый QuerySet содержит один или несколько объектов, и значение False, если QuerySet пустой.
+            if existing_active_versions.exists():
+                raise forms.ValidationError('Одновременно для продукта может быть только одна активная версия')
+
+        return cleaned_data

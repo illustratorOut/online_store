@@ -24,6 +24,10 @@ class ProductCreateView(CreateView):
         return context_data
 
     def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
+
         formset = self.get_context_data()['formset']
         self.object = form.save()
         if formset.is_valid():
@@ -33,9 +37,10 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductListView(ListView):
+class ProductListView( ListView):
     """Класс отображения товара"""
     model = Product
+    raise_exception = True
 
 
 class ProductUpdateView(UpdateView):
