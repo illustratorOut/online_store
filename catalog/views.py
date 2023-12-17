@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -37,10 +38,9 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductListView( ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     """Класс отображения товара"""
     model = Product
-    raise_exception = True
 
 
 class ProductUpdateView(UpdateView):
