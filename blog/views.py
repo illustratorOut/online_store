@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
@@ -39,6 +40,14 @@ class BlogUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('blog:view', args=[self.kwargs.get('pk')])
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        product_fields = [f for f in form.fields.keys()]
+        for field in product_fields:
+            if not self.request.user.has_perm(f'blog.set_{field}'):
+                del form.fields[field]
+        return form
 
 
 class BlogDeleteView(DeleteView):

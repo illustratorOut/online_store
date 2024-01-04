@@ -5,8 +5,8 @@
 
 
 <div class="container py-3">
+    {% if perms.catalog.delete_product %}
     <div class="mb-5">
-
         <a class="btn btn-success" href="{% url 'catalog:create' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
                  viewBox="0 0 16 16">
@@ -14,6 +14,8 @@
             </svg>
             Создать продукт</a>
     </div>
+    {% endif %}
+
 
     <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
         {% for item in object_list %}
@@ -25,14 +27,9 @@
                     <h4 class="my-0 font-weight-normal">
                         <div class="circle circle-lg ">
 
-                            {% if item.photo%}
-
-                            <!--                                                        <style>-->
-                            <!--                                                            .card:hover {transform: scale(1.1);}-->
-                            <!--                                                            .card {transition: transform 0.2s ease;}-->
-                            <!--                                                        </style>-->
-
-                            <div class="container card" style="width: 17rem;">
+                            {% if item.photo %}
+                            <!--                            <div class="container card" style="width: 17rem;">-->
+                            <div class="container card" style="width: 100%;">
                                 <div class="row justify-content-center align-items-center">
                                     <div class="col-auto">
                                         <img src="/media/{{ item.photo }}" class="rounded-circle z-depth-0 text-start "
@@ -44,9 +41,8 @@
                                 </div>
                             </div>
 
-
                             {% else %}
-                            <div class="container card" style="width: 17rem;">
+                            <div class="container card" style="width: 100%;">
                                 <div class="row justify-content-center align-items-center">
                                     <div class="col-auto">
                                         <img src="/media/product/not_photo.png"
@@ -94,9 +90,19 @@
                 <div class="col-auto py-3">
                     <a href="{% url 'catalog:product' item.pk %}"
                        class="btn btn-outline-primary btn-sm">Просмотр</a>
+
+
+                    {% if item.owner == request.user %}
                     <a href="{% url 'catalog:update' item.pk %}"
                        class="btn btn-outline-secondary btn-sm">Изменить</a>
+                    {% elif perms.catalog.set_is_published %}
+                    <a href="{% url 'catalog:update' item.pk %}"
+                       class="btn btn-outline-secondary btn-sm">Изменить</a>
+                    {% endif %}
+
+                    {% if perms.catalog.delete_product %}
                     <a href="{% url 'catalog:delete' item.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
+                    {% endif %}
                 </div>
 
 
@@ -105,7 +111,6 @@
                 </div>
             </div>
         </div>
-
 
         {% endfor %}
     </div>

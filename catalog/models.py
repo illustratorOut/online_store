@@ -35,7 +35,7 @@ class Product(models.Model, Truncate):
     price = models.IntegerField(default=0, verbose_name='Цена за покупку')
     date_create = models.DateTimeField(auto_now_add=True, **NULLABLE, verbose_name='Дата создания')
     last_modified_date = models.DateTimeField(auto_now=True, **NULLABLE, verbose_name='Дата последнего изменения')
-
+    is_published = models.BooleanField(**NULLABLE, default=True, verbose_name='Признак публикации')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
@@ -44,6 +44,12 @@ class Product(models.Model, Truncate):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+        permissions = [
+            ('set_is_published', 'Может публиковать товары'),
+            ('set_category', 'Может изменять категорию товара'),
+            ('set_description', 'Может изменять описание товара'),
+        ]
 
 
 class Version(models.Model):

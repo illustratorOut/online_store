@@ -23,3 +23,7 @@ class Blog(models.Model, Truncate):
     class Meta:
         verbose_name = 'Блог'
         verbose_name_plural = 'Блог'
+
+        permissions = [
+            ('set_is_published', 'Может публиковать товары'),
+        ]

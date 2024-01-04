@@ -25,8 +25,9 @@
 
                     <a href="{% url 'blog:view' i.pk %}" class="btn btn-outline-primary btn-sm">Просмотр</a>
                     <a href="{% url 'blog:update' i.pk %}" class="btn btn-outline-secondary btn-sm">Изменить</a>
+                    {% if perms.blog.delete_blog %}
                     <a href="{% url 'blog:delete' i.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
-
+                    {% endif %}
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">{{ i.date_create }}</small>

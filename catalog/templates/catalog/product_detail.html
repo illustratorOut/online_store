@@ -15,7 +15,11 @@
                 <div class="col">
                     <h5 class="card-title">{{i.name}}</h5>
                     <div class="card mb-1 rounded mx-auto d-block" style="max-width: 300px;">
+                        {% if object.photo %}
                         <img src="{{ object.photo|mediapath }}" class="img-fluid"/>
+                        {% else %}
+                        <img src="/media/product/not_photo.png" class="img-fluid"/>
+                        {% endif %}
                     </div>
                     <h5 class="card-title">Цена: {{object.price}} ₱</h5>
                 </div>
@@ -30,7 +34,6 @@
             <p class="card-text"><small class="text-muted">{{ object.last_modified_date }}</small></p>
         </div>
     </div>
-
 
 
 </div>
