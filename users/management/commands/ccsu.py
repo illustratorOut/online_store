@@ -1,5 +1,6 @@
 from django.core.management import BaseCommand
 
+from catalog.services import log_print_crate_user
 from users.models import User
 
 
@@ -13,9 +14,13 @@ class Command(BaseCommand):
             is_superuser=True,
             is_staff=True,
             is_active=True,
+            password='1234S5678'
         )
-        user.set_password('1234S5678')
+        password = '1234S5678'
+        user.set_password(password)
         user.save()
+
+        log_print_crate_user(user, password)
 
         user2 = User.objects.create(
             email='user@sky.pro',

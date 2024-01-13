@@ -1,0 +1,30 @@
+{% extends 'catalog/base.html' %}}
+{% load my_tags %}
+
+{% block content%}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <ul class="list-group">
+
+                <style>.catside:hover {background: #b5b5b5;}</style>
+
+                {% for object in object_list %}
+                <div class="catside">
+                    <a style="text-decoration: none;" href="{% url 'catalog:list' object.pk %}">
+                        <li class="list-group-item d-flex justify-content-between align-items-center catside">
+                            <h4>{{object.name}}</h4>
+                            <span class="badge bg-primary rounded-pill">{{object.pk|category_qty_product}}</span>
+                        </li>
+                    </a>
+                </div>
+                {% endfor %}
+
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

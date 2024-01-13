@@ -156,7 +156,7 @@ if CACHE_ENABLED:
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": "redis://127.0.0.1:6379",
-            "TIMEOUT": 300  # Ручная регулировка времени жизни кеша в секундах, по умолчанию 300
+            "LOCATION": os.getenv('REDIS'),
+            "TIMEOUT": 300  # Ручная регулировка wwwwwwwвремени жизни кеша в секундах, по умолчанию 300
         }
     }

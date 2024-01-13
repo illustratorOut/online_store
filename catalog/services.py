@@ -1,3 +1,4 @@
+import colorama
 from django.conf import settings
 from django.core.cache import cache
 
@@ -15,3 +16,8 @@ def get_cached_subjects_for_product(product_pk):
         subject_list = Product.objects.filter(pk=product_pk)
 
     return subject_list
+
+
+def log_print_crate_user(user, password):
+    print(
+        colorama.Fore.GREEN + f'Пользователь создан!\n' + colorama.Fore.RESET + 'login: ' + colorama.Fore.GREEN + f'{user.email}\n' + colorama.Fore.RESET + 'password: ' + colorama.Fore.GREEN + f'{password}' + colorama.Fore.RESET)
