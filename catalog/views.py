@@ -8,7 +8,7 @@ from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Contacts, Version, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from catalog.services import get_cached_subjects_for_product
+from catalog.services import get_cached_subjects_for_product, get_cached_category
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -119,6 +119,12 @@ class ProductDetailView(DetailView):
 class CategoryListView(LoginRequiredMixin, ListView):
     """Класс отображения категории"""
     model = Category
+
+    def get_context_data(self, **kwargs):
+        """Реализация функции кеширования"""
+        context_data = super().get_context_data(**kwargs)
+        context_data['object_list'] = get_cached_category()
+        return context_data
 
 
 class ContactsListView(ListView):

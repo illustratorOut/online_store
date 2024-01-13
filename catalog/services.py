@@ -2,7 +2,7 @@ import colorama
 from django.conf import settings
 from django.core.cache import cache
 
-from catalog.models import Product
+from catalog.models import Product, Category
 
 
 def get_cached_subjects_for_product(product_pk):
@@ -14,6 +14,20 @@ def get_cached_subjects_for_product(product_pk):
             cache.set(key, subject_list)
     else:
         subject_list = Product.objects.filter(pk=product_pk)
+
+    return subject_list
+
+
+def get_cached_category():
+    if settings.CACHE_ENABLED:
+        key = Category.objects.all()
+        subject_list = cache.get(key)
+        if subject_list is None:
+            subject_list = Category.objects.all()
+            cache.set(key, subject_list)
+    else:
+        # Если кеш не был подключен, то просто обращаемся к БД
+        subject_list = Product.objects.all()
 
     return subject_list
 
