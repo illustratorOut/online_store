@@ -1,10 +1,9 @@
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls import path, reverse_lazy
-
 from users.apps import UsersConfig
-from users.forms import RecoverPasswordForm
-from users.views import RegisterView, ProfileView, generate_new_password, is_active_key_registration, RecoverPassword
+from users.services import generate_new_password, is_active_key_registration
+from users.views import RegisterView, ProfileView
 
 app_name = UsersConfig.name
 
@@ -13,7 +12,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('profile/genpassword', generate_new_password, name='generate_new_password'),
+    path('profile/gen-new-password', generate_new_password, name='generate_new_password'),
     path('key-registration/<str:key>', is_active_key_registration, name='key_registration'),
 
     path('password-reset/',
