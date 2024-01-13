@@ -12,6 +12,7 @@ python manage.py add_data
 python manage.py add_data2 
 ```
 <h4>Создаем супер-пользователя (Админ):</h4>
+
 ```python
 python manage.py ccsu 
 ```
